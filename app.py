@@ -31,14 +31,16 @@ def index():
                     box-shadow: 2px 2px 8px #aaa;
                     position: relative;
                 }
-                .flashcard .answer {
-                    display: none;
+                .arrow {
+                    font-size: 2em;
+                    cursor: pointer;
+                    user-select: none;
+                    margin: 0 20px;
                 }
-                .flashcard.revealed .question {
-                    display: none;
-                }
-                .flashcard.revealed .answer {
-                    display: block;
+                .controls {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             </style>
         </head>
@@ -46,18 +48,43 @@ def index():
             <h1>Flashcards</h1>
             <a href="{{ url_for('add_flashcard') }}">Add Flashcard</a>
             {% if flashcards %}
-                {% for card in flashcards %}
-                    <div class="flashcard" onclick="this.classList.toggle('revealed')">
-                        <div class="question">{{ card['question'] }}</div>
-                        <div class="answer">{{ card['answer'] }}</div>
+                <div class="controls">
+                    <span class="arrow" id="left-arrow">&#8592;</span>
+                    <div class="flashcard" id="flashcard" onclick="revealAnswer()">
+                        <div class="question" id="question"></div>
+                        <div class="answer" id="answer" style="display:none;"></div>
                     </div>
-                {% endfor %}
+                    <span class="arrow" id="right-arrow">&#8594;</span>
+                </div>
+                <script>
+                    const flashcards = {{ flashcards|tojson }};
+                    let current = 0;
+                    function showCard(idx) {
+                        document.getElementById('flashcard').classList.remove('revealed');
+                        document.getElementById('question').style.display = 'block';
+                        document.getElementById('answer').style.display = 'none';
+                        document.getElementById('question').textContent = flashcards[idx].question;
+                        document.getElementById('answer').textContent = flashcards[idx].answer;
+                    }
+                    function revealAnswer() {
+                        document.getElementById('question').style.display = 'none';
+                        document.getElementById('answer').style.display = 'block';
+                    }
+                    document.getElementById('left-arrow').onclick = function() {
+                        if (current > 0) current--;
+                        else current = flashcards.length - 1;
+                        showCard(current);
+                    };
+                    document.getElementById('right-arrow').onclick = function() {
+                        if (current < flashcards.length - 1) current++;
+                        else current = 0;
+                        showCard(current);
+                    };
+                    showCard(current);
+                </script>
             {% else %}
                 <p>No flashcards yet.</p>
             {% endif %}
-            <script>
-                // No extra JS needed, handled by onclick toggle
-            </script>
         </body>
         </html>
     ''', flashcards=flashcards)
