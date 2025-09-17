@@ -59,8 +59,8 @@ def index():
                     transform: scale(1.2);
                 }
                 .flashcard {
-                    width: 350px;
-                    height: 180px;
+                    width: 600px;
+                    height: 320px;
                     background: linear-gradient(135deg, #23272f 60%, #222 100%);
                     border: none;
                     border-radius: 16px;
@@ -68,7 +68,7 @@ def index():
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.25em;
+                    font-size: 2em;
                     cursor: pointer;
                     position: relative;
                     margin: 0 10px;
@@ -97,11 +97,27 @@ def index():
             </style>
         </head>
         <body>
-            <div class="welcome">
-                <h1>Welcome to FlashyCardos</h1>
-                <p class="description">FlashyCardos is a simple, modern web app for creating and studying flashcards. Add your own questions and answers, then review them one at a time. Click a card to reveal the answer, and use the arrows to switch between cards. Perfect for quick study sessions and memory practice!</p>
+            <div class="welcome" style="text-align:center; margin:40px auto; max-width:1100px;">
+                <h1 style="font-size:4em; color:#00e6cf; text-align:center;">Welcome to FlashyCardos</h1>
+                <p class="description" style="font-size:2em; color:#e0e0e0; width:40vw; margin:0 auto; line-height:1.3; word-break:break-word; text-align:center;">FlashyCardos is a simple, modern web app for creating and studying flashcards. Add your own questions and answers, then review them one at a time. Click a card to reveal the answer, and use the arrows to switch between cards. Perfect for quick study sessions and memory practice!</p>
             </div>
-            <a href="{{ url_for('add_flashcard') }}">Add Flashcard</a>
+            <div style="text-align:center;">
+                <a href="{{ url_for('add_flashcard') }}" style="
+                    display: inline-block;
+                    font-size: 2em;
+                    background: #23272f;
+                    color: #00e6cf;
+                    border-radius: 12px;
+                    padding: 24px 48px;
+                    margin: 32px auto;
+                    box-shadow: 0 4px 24px #000a;
+                    font-weight: 700;
+                    text-decoration: none;
+                    transition: background 0.2s, color 0.2s;
+                    border: 2px solid #00e6cf;
+                    text-align: center;
+                ">Add Flashcard</a>
+            </div>
             {% if flashcards %}
                 <div class="controls">
                     <span class="arrow" id="left-arrow">&#8592;</span>
