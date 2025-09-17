@@ -105,9 +105,12 @@ def index():
             {% if flashcards %}
                 <div class="controls">
                     <span class="arrow" id="left-arrow">&#8592;</span>
-                    <div class="flashcard" id="flashcard" onclick="toggleCard()">
-                        <div class="question" id="question"></div>
-                        <div class="answer" id="answer" style="display:none;"></div>
+                    <div>
+                        <div class="flashcard" id="flashcard" onclick="toggleCard()">
+                            <div class="question" id="question"></div>
+                            <div class="answer" id="answer" style="display:none;"></div>
+                        </div>
+                        <div class="card-counter" id="card-counter" style="text-align:center; margin-top:12px; color:#00e6cf; font-size:1.15em;"></div>
                     </div>
                     <span class="arrow" id="right-arrow">&#8594;</span>
                 </div>
@@ -122,6 +125,7 @@ def index():
                         document.getElementById('question').textContent = flashcards[idx].question;
                         document.getElementById('answer').textContent = flashcards[idx].answer;
                         window.cardState = 'question';
+                        document.getElementById('card-counter').textContent = (idx + 1) + '/' + flashcards.length;
                     }
                     function toggleCard() {
                         if (window.cardState === 'question') {
