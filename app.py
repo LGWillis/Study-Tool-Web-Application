@@ -97,7 +97,10 @@ def index():
             </style>
         </head>
         <body>
-            <h1>Flashcards</h1>
+            <div class="welcome">
+                <h1>Welcome to FlashyCardos</h1>
+                <p class="description">FlashyCardos is a simple, modern web app for creating and studying flashcards. Add your own questions and answers, then review them one at a time. Click a card to reveal the answer, and use the arrows to switch between cards. Perfect for quick study sessions and memory practice!</p>
+            </div>
             <a href="{{ url_for('add_flashcard') }}">Add Flashcard</a>
             {% if flashcards %}
                 <div class="controls">
@@ -156,6 +159,29 @@ def add_flashcard():
         <head>
             <title>Add Flashcard</title>
             <style>
+                .welcome {
+                    max-width: 600px;
+                    margin: 40px 0 20px 40px;
+                    text-align: left;
+                }
+                .welcome h1 {
+                    font-size: 2.2em;
+                    color: #00e6cf;
+                    margin-bottom: 10px;
+                    text-align: left;
+                }
+                .description {
+                    font-size: 1.35em;
+                    color: #e0e0e0;
+                    margin-bottom: 18px;
+                    text-align: left;
+                }
+                .welcome h1 {
+                    font-size: 2.8em;
+                    color: #00e6cf;
+                    margin-bottom: 10px;
+                    text-align: left;
+                }
                 body {
                     background: #181a20;
                     color: #e0e0e0;
