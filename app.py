@@ -105,7 +105,7 @@ def index():
             {% if flashcards %}
                 <div class="controls">
                     <span class="arrow" id="left-arrow">&#8592;</span>
-                    <div class="flashcard" id="flashcard" onclick="revealAnswer()">
+                    <div class="flashcard" id="flashcard" onclick="toggleCard()">
                         <div class="question" id="question"></div>
                         <div class="answer" id="answer" style="display:none;"></div>
                     </div>
@@ -121,10 +121,18 @@ def index():
                         document.getElementById('answer').style.display = 'none';
                         document.getElementById('question').textContent = flashcards[idx].question;
                         document.getElementById('answer').textContent = flashcards[idx].answer;
+                        window.cardState = 'question';
                     }
-                    function revealAnswer() {
-                        document.getElementById('question').style.display = 'none';
-                        document.getElementById('answer').style.display = 'block';
+                    function toggleCard() {
+                        if (window.cardState === 'question') {
+                            document.getElementById('question').style.display = 'none';
+                            document.getElementById('answer').style.display = 'block';
+                            window.cardState = 'answer';
+                        } else {
+                            document.getElementById('question').style.display = 'block';
+                            document.getElementById('answer').style.display = 'none';
+                            window.cardState = 'question';
+                        }
                     }
                     document.getElementById('left-arrow').onclick = function() {
                         if (current > 0) current--;
