@@ -41,3 +41,6 @@ The Study Tool Web Application is a modern, user-friendly web app designed to he
 3. **Create and review flashcards:**
 	- Add new flashcards using the interface
 	- Review and manage your study materials
+
+## Image of App Running
+![App Running](images/AppRunning.png)
