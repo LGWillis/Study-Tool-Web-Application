@@ -42,3 +42,4 @@ The Study Tool Web Application is a modern, user-friendly web app designed to he
 	- Add new flashcards using the interface
 	- Review and manage your study materials
 
+![Prompt for Copilot to update the README.md file](images/CoPilot.png)
